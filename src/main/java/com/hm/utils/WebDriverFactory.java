@@ -18,42 +18,47 @@ public class WebDriverFactory {
     private WebDriverFactory() {
     }
 
+    // 多个case共用一个driver
     public static WebDriver getDriverInstance(Browser browser){
         if (driver == null){
-
+            driver = getDriver(browser);
         }
         return driver;
     }
 
+    // 一个case都用重新new一个driver
     public static WebDriver getDriver(Browser browser){
         switch (browser.ordinal()){
             case 1:
                 // firefox
-                return null;
+                return getFireFoxWebDriver();
             case 2:
                 // ie
-                return null;
+                return getIEWebDriver();
             case 3:
                 // safari
-                return null;
-            case 4:
-                // html
-                return null;
+                return getSafariWebDriver();
+//            case 4:
+//                // html
+//                return null;
         }
         // chrome
-        return null;
+        return getChromeWebDriver();
     }
 
     // 获取firfox
     public static WebDriver getFireFoxWebDriver(){
-        System.setProperty("webdriver.firefox.bin","C:/Program Files (x86)/Mozilla Firefox/firefox.exe");
+        if (!System.getProperties().containsKey("webdriver.firefox.marionette")){
+//            System.setProperty("webdriver.firefox.marionette","C:/Program Files/Mozilla Firefox/firefox.exe");
+            System.setProperty("webdriver.gecko.dirver","src/test/resources/geckodriver.exe");
+        }
         return new FirefoxDriver();
     }
 
     // 获取chrome
     public static WebDriver getChromeWebDriver(){
-        if (!System.getProperties().contains("webdriver.chrome.driver")){
-            System.setProperty("webdriver.chrome.driver","/src/test/resources/chromedrivrer.exe");
+        if (!System.getProperties().containsKey("webdriver.chrome.driver")){
+            System.setProperty("webdriver.chrome.driver","src/test/resources/chromedriver.exe");
         }
 
         DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
@@ -67,12 +72,12 @@ public class WebDriverFactory {
             });
         }
         options.addArguments(new String[]{"start-maximized"});
-        return new ChromeDriver(chromeCapabilities);
+        return new ChromeDriver();
     }
 
     // 获取ie
     public static WebDriver getIEWebDriver(){
-        if (!System.getProperties().contains("webdriver.ie.driver")){
+        if (!System.getProperties().containsKey("webdriver.ie.driver")){
             System.setProperty("webdriver.ie.driver",System.getProperty("user.dir") + "/src/test/resources/IEDriverServer.exe");
         }
         // 定义分布式ie浏览器
@@ -93,13 +98,12 @@ public class WebDriverFactory {
     }
 
 
-    // 获取html
-    public static WebDriver getHtmlWebDriver(){
-        DesiredCapabilities htmlCapabilities = DesiredCapabilities.htmlUnit();
-        htmlCapabilities.setCapability("ignoreProtectedModeSettings",true);
-        return null;
-    }
-
+//    // 获取html
+//    public static WebDriver getHtmlWebDriver(){
+//        DesiredCapabilities htmlCapabilities = DesiredCapabilities.htmlUnit();
+//        htmlCapabilities.setCapability("ignoreProtectedModeSettings",true);
+//        return null;
+//    }
 
 
 }

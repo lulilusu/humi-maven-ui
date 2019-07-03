@@ -1,18 +1,26 @@
 package com.hm.actions;
 
+import com.hm.utils.Browser;
+import com.hm.utils.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class Login {
 
-    WebDriver driver = null;
+    WebDriver driver;
 
-    public Login(){
-        System.setProperty("webdriver.chrome.bin", "C:/Users/DELL/AppData/Local/Google/Chrome/Application");
-        System.setProperty("webdriver.chrome.driver","C:/chromedriver.exe");
-        driver = new ChromeDriver();
 
+
+   public void login(){
+
+       driver = WebDriverFactory.getDriver(Browser.FIREFOX);
+       driver.manage().window().maximize();
+       driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+       driver.get("https://www.baidu.com");
+   }
+
+    public static void main(String[] args) {
+        new Login().login();
     }
-
-
 }

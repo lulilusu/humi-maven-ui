@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Excel {
 
     public static ArrayList<String[]> readExcel(){
-        String path = "src/main/java/com/hm/testdata/testcase.xls";
+        String path = "src/main/java/com/hm/testdata/democase.xls";
         Workbook book = null;
         ArrayList<String[]> al = new ArrayList<>();
         try {
@@ -21,7 +21,6 @@ public class Excel {
                 for (int j = 0; j < sheet.getColumns(); j ++){
                     Cell cell = sheet.getCell(j, i);
                     dataRow[j] = cell.getContents();
-                    System.out.println(sheet.getRow(j));
                 }
                 al.add(dataRow);
             }
