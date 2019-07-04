@@ -49,8 +49,8 @@ public class WebDriverFactory {
     // 获取firfox
     public static WebDriver getFireFoxWebDriver(){
         if (!System.getProperties().containsKey("webdriver.firefox.marionette")){
-//            System.setProperty("webdriver.firefox.marionette","C:/Program Files/Mozilla Firefox/firefox.exe");
-            System.setProperty("webdriver.gecko.dirver","src/test/resources/geckodriver.exe");
+            System.setProperty("webdriver.firefox.marionette","C:/Program Files/Mozilla Firefox/firefox.exe");
+//            System.setProperty("webdriver.gecko.dirver","src/test/resources/geckodriver.exe");
         }
         return new FirefoxDriver();
     }

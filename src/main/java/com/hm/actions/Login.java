@@ -11,9 +11,21 @@ public class Login {
     WebDriver driver;
 
 
+       driver = WebDriverFactory.getDriver(Browser.IE);
+       driver.manage().window().maximize();
+       driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+       driver.get("https://www.baidu.com");
+   }
 
+<<<<<<< .mine
    public void login(){
 
+=======
+    public static void main(String[] args) {
+        new Login().login();
+>>>>>>> .theirs
+
+<<<<<<< .mine
        driver = WebDriverFactory.getDriver(Browser.FIREFOX);
        driver.manage().window().maximize();
        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -23,4 +35,15 @@ public class Login {
     public static void main(String[] args) {
         new Login().login();
     }
+=======
+
+    }
+
+
+
+
+
+
+
+>>>>>>> .theirs
 }
