@@ -9,6 +9,7 @@ public class DataDriver {
     public static void Drive(){
 
         try {
+            int caseCount = 0;
             ArrayList<String[]> allData = new ArrayList<>();
             allData.remove(0);
             for (String[] data: allData) {
@@ -17,21 +18,12 @@ public class DataDriver {
                     Class<?> clazz = Class.forName("com.hm.test" + data[0]);
                     Method mth = clazz.getDeclaredMethod(data[1], HashMap.class, String.class);
                     Object obj = clazz.newInstance();
-
+                    mth.invoke(obj,map,data[3]);
+                    caseCount ++;
                 }
-
             }
-        }catch (ClassNotFoundException e){
+        }catch (Exception e){
             System.err.println("反射实列化对象失败");
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            System.err.println("反射获取类方法失败");
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            System.err.println("实例化有私有方法拒绝访问");
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            System.err.println("实例化失败");
             e.printStackTrace();
         }
 
