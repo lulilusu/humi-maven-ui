@@ -20,7 +20,7 @@ public class DriverBase {
     /**
      *  初始化driver浏览器
      */
-    public DriverBase(WebDriver driver){
+    public DriverBase(){
         this.driver = WebDriverFactory.getDriver(Browser.CHROME);
     }
 
@@ -28,9 +28,9 @@ public class DriverBase {
      * 获取driver
      * @return driver
      */
-    public WebDriver getDriver(){
-        return driver;
-    }
+//    public WebDriver getDriver(){
+//        return driver;
+//    }
 
     /**
      * 关闭浏览器
@@ -59,6 +59,11 @@ public class DriverBase {
             System.out.println("元素未找到");
         }
     }
+
+    public void timeOut(int mum){
+        driver.manage().timeouts().implicitlyWait(mum,TimeUnit.SECONDS);
+    }
+
 
     /**
      * 返回
@@ -108,6 +113,9 @@ public class DriverBase {
      */
     public List<WebElement> findElements(By by){
         return driver.findElements(by);
+    }
+    public WebElement findElement(By by){
+        return driver.findElement(by);
     }
 
     /**

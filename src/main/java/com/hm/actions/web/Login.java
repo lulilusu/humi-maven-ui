@@ -11,8 +11,9 @@ public class Login {
     public DriverBase driver;
 
     public Login (){
+       driver =  new DriverBase();
        driver.windowMax();
-       driver.
+       driver.timeOut(30);
        driver.get("https://www.baidu.com");
 
    }
