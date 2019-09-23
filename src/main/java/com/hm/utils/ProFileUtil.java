@@ -38,6 +38,11 @@ public class ProFileUtil {
 
     }
 
+    /**
+     *  解析配置文件
+     * @param eleName
+     * @return
+     */
     public By parseProFile(String eleName){
         String by = properties.getProperty(eleName);
         String byType = by.split(",")[0];
@@ -58,6 +63,8 @@ public class ProFileUtil {
                 return By.cssSelector(byValue);
             case "cssName":
                 return By.className(byValue);
+            default:
+                log.error("该元素未为被定义" + byValue);
         }
         return null;
     }

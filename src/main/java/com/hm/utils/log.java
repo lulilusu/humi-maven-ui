@@ -1,6 +1,7 @@
 package com.hm.utils;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 
 import java.util.HashMap;
 import java.util.Map;

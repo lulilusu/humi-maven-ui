@@ -55,7 +55,7 @@ public class PropUtil {
             String property = properties.getProperty(key);
             return property;
         }else {
-            System.out.println("key不存在");
+            log.info("key不存在");
             return "";
         }
     }
