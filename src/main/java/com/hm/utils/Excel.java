@@ -3,14 +3,16 @@ package com.hm.utils;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
+import jxl.read.biff.BiffException;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Excel {
 
     public static ArrayList<String[]> readExcel(){
-        String path = "src/main/java/com/hm/testdata/democase.xls";
+        String path = "src/main/java/com/hm/testdata/testcase.xls";
         Workbook book = null;
         ArrayList<String[]> al = new ArrayList<>();
         try {
@@ -24,7 +26,6 @@ public class Excel {
                 }
                 al.add(dataRow);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

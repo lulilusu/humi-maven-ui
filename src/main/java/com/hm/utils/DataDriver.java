@@ -1,5 +1,6 @@
 package com.hm.utils;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +11,7 @@ public class DataDriver {
 
         try {
             int caseCount = 0;
-            ArrayList<String[]> allData = new ArrayList<>();
+            ArrayList<String[]> allData = Excel.readExcel();
             allData.remove(0);
             for (String[] data: allData) {
                 HashMap<String, String> map = Data.getMap(data[2]);
@@ -22,8 +23,20 @@ public class DataDriver {
                     caseCount ++;
                 }
             }
-        }catch (Exception e){
-            log.error("反射异常");
+            System.out.println("一共执行了" + caseCount + "用例");
+        } catch (InstantiationException e) {
+            log.error("无法反射实例化对象");
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            log.error("无法调用实例化对象方法");
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            log.error("获取不到实体方法");
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            log.error("获取不到反射类");
             e.printStackTrace();
         }
 
