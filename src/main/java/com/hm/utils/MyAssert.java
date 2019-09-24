@@ -7,6 +7,7 @@ public class MyAssert {
 
     public static void succ(){
         log.info("test case succ");
+        log.error("333");
         succCount ++;
     }
     public static void fail(){
