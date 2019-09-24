@@ -23,7 +23,7 @@ public class DataDriver {
                 }
             }
         }catch (Exception e){
-            System.err.println("反射实列化对象失败");
+            log.error("反射异常");
             e.printStackTrace();
         }
 
