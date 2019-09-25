@@ -10,7 +10,7 @@ public class Data {
         for (String line: buf){
             log.info("测试用例：" + line);
             if (line.contains("=")){
-                map.put(line.split("=")[0],line.split("0")[1]);
+                map.put(line.split("=")[0], line.split("=")[1]);
             }
         }
         return map;
